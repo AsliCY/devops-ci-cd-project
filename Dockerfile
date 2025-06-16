@@ -25,8 +25,8 @@ COPY --from=builder /app/node_modules ./node_modules
 # Copy application source
 COPY --chown=nodejs:nodejs . .
 
-# Remove unnecessary files
-RUN rm -rf tests/ *.md .git/
+# Remove unnecessary files (but keep node_modules)
+RUN rm -rf tests/ *.md .git/ || true
 
 # Set user
 USER nodejs
